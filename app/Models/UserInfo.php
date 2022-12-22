@@ -7,5 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserInfo extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+         "name",
+         "family",
+         "national_code",
+         "phone",
+         "user_id",
+         "type",
+       ];
 }

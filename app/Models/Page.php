@@ -5,13 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SmsLog extends Model
+class Page extends Model
 {
     protected $fillable = [
-        'user_id',
-        'mobile',
-        'code',
-        'is_used',
-        "type"
-    ];
+        "title","body","image","type",
+       ];
 }

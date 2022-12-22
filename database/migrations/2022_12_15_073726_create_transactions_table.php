@@ -15,6 +15,12 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
+            $table->integer("user_id")->unsigned();
+            $table->foreign("user_id")->references("users")->onDelete("cascade");
+            $table->integer("order_id")->unsigned();
+            $table->foreign("order_id")->references("orders")->onDelete("cascade");
+            $table->string("price");
+            $table->enum('is_paid', array('yes', 'no'))->default("no");
             $table->timestamps();
         });
     }

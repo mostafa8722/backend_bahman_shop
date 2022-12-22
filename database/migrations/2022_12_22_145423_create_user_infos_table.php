@@ -15,6 +15,15 @@ class CreateUserInfosTable extends Migration
     {
         Schema::create('user_infos', function (Blueprint $table) {
             $table->id();
+            $table->integer("user_id")->unsigned();
+            $table->foreign("user_id")->references("users")->onDelete("cascade");
+             
+            $table->string("name");
+             $table->string("family");
+             $table->string("national_code");
+             $table->string("phone");
+             $table->enum("type",array("personal","commercial"))->default("personal");
+            
             $table->timestamps();
         });
     }
