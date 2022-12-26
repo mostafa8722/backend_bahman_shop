@@ -26,13 +26,15 @@ class CreateProductsTable extends Migration
             $table->foreign("seller_id")->references("sellers")->onDelete("cascade");
             $table->integer("brand_id")->unsigned();
             $table->foreign("brand_id")->references("brands")->onDelete("cascade");
-         
             $table->string('title',190);
+            $table->string('en_title',190);
+            
             $table->text('abstract')->nullable(); 
             $table->text('discription')->nullable(); 
             $table->text('price')->nullable(); 
             $table->integer('limited_number')->default(10); 
             $table->enum('isAvailable',array(false,true));
+            $table->json("images")->nullable();
             $table->json("details")->nullable();
             $table->json("features")->nullable();
             $table->json("colors")->nullable();

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources\v1\Admin\Collections;
+namespace App\Http\Resources\v1\Admin\collections;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class OrderCollection extends ResourceCollection
+class PermissionCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -19,11 +19,10 @@ class OrderCollection extends ResourceCollection
                 return [
                     "id"=>$item->id,
                     "title"=>$item->title,
-                    "body"=>$item->body,
-                    "price"=>$item->price,
-                    "user_id"=>$item->user_id,
-                    "status"=>$item->status,
+                    "label"=>$item->label,
+                    "description"=>$item->description,
                 ];
+               
             })
         ];
     }

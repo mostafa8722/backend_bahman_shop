@@ -11,9 +11,11 @@ class Product extends Model
         "user_id",
         "seller_id",
         "title",
+        'en_title',
         "discription",
         "abstract",
         "colors",
+        "images",
         "guaranti",
         "limited_number",
         "isAvailable",
@@ -25,4 +27,6 @@ class Product extends Model
         "colors",
         "sizes",
     ];
+
+    protected $casts = ["images","details","features","colors","sizes"];
 }

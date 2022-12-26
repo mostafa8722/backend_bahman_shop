@@ -23,7 +23,7 @@ class CreateOrdersTable extends Migration
             $table->string("price");
          
             $table->enum('status', array('unpaid', 'paid','ready_to_send','sent'))->default("unpaid");
-            $table->timestamps();
+        
             $table->timestamps();
         });
     }

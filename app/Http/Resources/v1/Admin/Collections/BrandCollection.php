@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources\v1\Admin\Collections;
+namespace App\Http\Resources\v1\Admin\collections;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class OrderCollection extends ResourceCollection
+class BrandCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -15,14 +15,11 @@ class OrderCollection extends ResourceCollection
     public function toArray($request)
     {
         return [
-            "data"=>$this->collection->map(function($item){
+            "id"=>$this->collection->map(function($item){
                 return [
                     "id"=>$item->id,
                     "title"=>$item->title,
-                    "body"=>$item->body,
-                    "price"=>$item->price,
-                    "user_id"=>$item->user_id,
-                    "status"=>$item->status,
+                    "en_title"=>$item->en_title,
                 ];
             })
         ];

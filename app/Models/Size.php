@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Size extends Model
 {
     protected $fillable = [
-        "title","value"
+        "title","value", 'en_title',
+    
     ];
 }

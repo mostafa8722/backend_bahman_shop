@@ -3,37 +3,35 @@
 namespace App\Http\Controllers\Api\v1\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\v1\Admin\Collections\ProductCollection;
-use App\Http\Resources\v1\Admin\Resources\ProductResource;
-use App\Models\Product ;
+use App\Http\Resources\v1\Admin\collections\CategoryCollection;
+use App\Http\Resources\v1\admin\resource\CategoryResource;
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class CategoryController extends MotherController
 {
-    
+
     public function index(Request $request)
     {
-        $products = new Product(); 
+        $categories = new Category();
 
         if (isset($request->title))
-            $products->where("title", "LIKE", "%$request->title%");
+            $categories->where("title", "LIKE", "%$request->title%");
 
         if (isset($request->en_title))
-            $products->where("en_title", "LIKE", $request->en_title);
+            $categories->where("en_title", "LIKE", $request->en_title);
 
         if (isset($request->body))
-            $products->where("body", "LIKE", $request->body);
+            $categories->where("body", "LIKE", $request->body);
 
-        if (isset($request->category_id))
-            $products->where("category_id", "=", $request->category_id);
+        if (isset($request->parent_id))
+            $categories->where("parent_id", "=", $request->parent_id);
 
-
-
-        $products =  $products->orderBy("id", "DESC")->paginate(20);
+        $categories =  $categories->orderBy("id", "DESC")->paginate(20);
 
 
-        return new ProductCollection($products);
+        return new CategoryCollection($categories);
     }
     public function create(Request $request)
     {
@@ -50,13 +48,6 @@ class ProductController extends Controller
                 "status" => 403
             ], 403);
 
-            if (!isset($request->body))
-            return response([
-                "data" => "description  can't be empty",
-                "status" => 403
-            ], 403);
-
-
 
 
         $src = "";
@@ -65,9 +56,9 @@ class ProductController extends Controller
 
             $ext = $image->getClientOriginalExtension();
             $ext = "." . strtolower($ext);
-            $src = $this->uploadFile($image, "products", time() . $ext);
+            $src = $this->uploadFile($image, "categories", time() . $ext);
         }
-        $cat_parent = Product::whereId($request->parent_id)->first();
+        $cat_parent = Category::whereId($request->parent_id)->first();
         $user_auth =User::whereApi_token(trim($request->bearerToken()))->whereLevel("admin")->first();
 
         $inputs = [
@@ -82,16 +73,16 @@ class ProductController extends Controller
         ];
 
         
-        $product = Product::create($inputs);
+        $category = Category::create($inputs);
 
 
         return response([
-            "data" => "product created successfully",
+            "data" => "category created successfully",
             "status" => 200
         ], 200);
     }
 
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Category $category)
     {
 
         if (!isset($request->title))
@@ -108,15 +99,15 @@ class ProductController extends Controller
 
 
 
-        $src = $product->image;
+        $src = $category->image;
         if (isset($request->image)) {
             $image = $request->image;
 
             $ext = $image->getClientOriginalExtension();
             $ext = "." . strtolower($ext);
-            $src = $this->uploadFile($image, "products", time() . $ext);
+            $src = $this->uploadFile($image, "categories", time() . $ext);
         }
-        $cat_parent = Product::whereId($request->parent_id)->first();
+        $cat_parent = Category::whereId($request->parent_id)->first();
         $user_auth =User::whereApi_token(trim($request->bearerToken()))->whereLevel("admin")->first();
 
         $inputs = [
@@ -130,29 +121,28 @@ class ProductController extends Controller
 
         ];
 
-        $product->update($inputs);
+        $category->update($inputs);
 
 
         return response([
-            "data" => "product updated successfully",
+            "data" => "category updated successfully",
             "status" => 200
         ], 200);
     }
-    public function single(Product $product)
+    public function single(Category $category)
     {
 
-        return new ProductResource($product);
+        return new CategoryResource($category);
     }
-    public function delete(Product $product)
+    public function delete(Category $category)
     {
 
 
 
-        $product->delete();
+        $category->delete();
         return response([
-            "data" => "product deleted successfully",
+            "data" => "category deleted successfully",
             "status" => 200
         ], 200);
     }
-
 }

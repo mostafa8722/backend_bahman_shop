@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Resources\v1\Admin\Collections;
+namespace App\Http\Resources\v1\Admin\collections;
 
+use App\Models\Order;
+use App\Models\User;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class OrderCollection extends ResourceCollection
+class TransactionCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -16,13 +18,16 @@ class OrderCollection extends ResourceCollection
     {
         return [
             "data"=>$this->collection->map(function($item){
+                $user = User::where('id',"=",$item->user_id)->first();
+                $order = Order::where('id',"=",$item->order_id)->first();
                 return [
                     "id"=>$item->id,
-                    "title"=>$item->title,
-                    "body"=>$item->body,
-                    "price"=>$item->price,
                     "user_id"=>$item->user_id,
-                    "status"=>$item->status,
+                    "user"=>$user?($user->name." ".$user->family):"",
+                    "order_id"=>$item->order_id,
+                    "order"=>$order->body,
+                    "price"=>$item->price,
+                    "is_paid"=>$item->is_paid,
                 ];
             })
         ];

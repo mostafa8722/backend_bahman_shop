@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('family');
+            $table->string('image');
             $table->string('email')->unique()->nullable();
             $table->string('mobile')->unique();
             $table->string('api_token')->unique();

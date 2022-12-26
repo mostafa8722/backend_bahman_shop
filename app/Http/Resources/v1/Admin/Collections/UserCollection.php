@@ -14,6 +14,25 @@ class UserCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            "data" =>$this->collection->map(function($item){
+
+                return [
+                    "id"=>$item->id,
+                    "name"=>$item->name,
+                    "family"=>$item->family,
+                    "mobile"=>$item->mobile,
+                    "email"=>$item->email,
+                    "level"=>$item->level,
+                    "api_token"=>$item->api_token,
+                ];
+            })
+        ];
+       
+      
+    }
+    public  function with($request)
+    {
+         return ["status"=>200];
     }
 }

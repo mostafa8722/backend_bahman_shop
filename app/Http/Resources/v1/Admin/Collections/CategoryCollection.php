@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Resources\v1\Admin\Collections;
+namespace App\Http\Resources\v1\Admin\collections;
 
+use App\Models\Category;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class OrderCollection extends ResourceCollection
+class CategoryCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -16,13 +17,16 @@ class OrderCollection extends ResourceCollection
     {
         return [
             "data"=>$this->collection->map(function($item){
+                $cat = Category::where("id","=",$item->parent_id)->first();
                 return [
                     "id"=>$item->id,
                     "title"=>$item->title,
+                    "en_title"=>$item->en_title,
                     "body"=>$item->body,
-                    "price"=>$item->price,
-                    "user_id"=>$item->user_id,
-                    "status"=>$item->status,
+                    "image"=>$item->image,
+                    "parent_id"=>$item->parent_id,
+                    "parent"=>$cat?$cat->title:"",
+                    "level"=>$item->level,
                 ];
             })
         ];

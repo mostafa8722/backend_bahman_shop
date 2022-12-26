@@ -4,7 +4,7 @@ namespace App\Http\Resources\v1\Admin\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class RoleResource extends JsonResource
+class BrandResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,8 +17,7 @@ class RoleResource extends JsonResource
         return [
             "id"=>$this->id,
             "title"=>$this->title,
-            "label"=>$this->label,
-            "description"=>$this->description,
+            "en_title"=>$this->en_title,
         ];
     }
     public function with($request){
