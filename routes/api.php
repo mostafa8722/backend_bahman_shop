@@ -69,6 +69,16 @@ Route::group(
    Route::get('sizes/{size}','SizeController@single');
    Route::delete('sizes/{size}','SizeController@delete');
 
+
+   
+   Route::get('specifications','SpecificationController@index');
+   Route::post('specifications','SpecificationController@create');
+   Route::put('specifications/{specification}','SpecificationController@update');
+   Route::get('specifications/{specification}','SpecificationController@single');
+   Route::delete('specifications/{specification}','SpecificationController@delete');
+
+   
+
    Route::get('users','UserController@index');
    Route::post('users','UserController@create');
    Route::put('users/{user}','UserController@update');

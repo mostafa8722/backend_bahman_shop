@@ -9,7 +9,7 @@ use App\Models\Product ;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class ProductController extends MotherController
 {
     
     public function index(Request $request)
@@ -50,7 +50,7 @@ class ProductController extends Controller
                 "status" => 403
             ], 403);
 
-            if (!isset($request->body))
+            if (!isset($request->discription))
             return response([
                 "data" => "description  can't be empty",
                 "status" => 403
@@ -60,6 +60,7 @@ class ProductController extends Controller
 
 
         $src = "";
+
         if (isset($request->image)) {
             $image = $request->image;
 
@@ -73,14 +74,16 @@ class ProductController extends Controller
         $inputs = [
             "title" => $request->title,
             "en_title" => $request->en_title,
-            "body" => $request->body,
-            "parent_id" => $request->parent_id,
-            "user_id" => $user_auth->id,
-            "image" => $src,
-            "level" => $request->parent_id == 0 ? 1 : ($cat_parent->level + 1),
+            "discription" => $request->discription,
+            "abstract" => $request->abstract,
+            
+            "images" => ['thumbnail'=>$src],
+           // "images" => ['thumbnail'=>$src,"attachment"=>"attachment"],
+            "status" => isset($request->status)?$request->status:"draft",
 
         ];
 
+     
         
         $product = Product::create($inputs);
 

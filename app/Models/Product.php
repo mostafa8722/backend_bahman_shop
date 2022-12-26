@@ -28,5 +28,10 @@ class Product extends Model
         "sizes",
     ];
 
-    protected $casts = ["images","details","features","colors","sizes"];
+    protected $casts = [
+        "images"=> 'array',
+        "details"=> 'array',
+        "features"=> 'array',
+        "colors"=> 'array',
+        "sizes"=> 'array'];
 }
