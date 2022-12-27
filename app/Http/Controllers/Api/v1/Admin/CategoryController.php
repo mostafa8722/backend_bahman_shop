@@ -14,7 +14,19 @@ class CategoryController extends MotherController
 
     public function index(Request $request)
     {
+
+        
         $categories = new Category();
+
+        
+        $order = "id";
+        $desc = "DESC";
+
+        if (isset($request->order))
+            $order  = $request->order;
+
+        if (isset($request->desc))
+            $order  = $request->desc;
 
         if (isset($request->title))
             $categories->where("title", "LIKE", "%$request->title%");
@@ -23,12 +35,12 @@ class CategoryController extends MotherController
             $categories->where("en_title", "LIKE", $request->en_title);
 
         if (isset($request->body))
-            $categories->where("body", "LIKE", $request->body);
+            $categories->where("body", "LIKE","%$request->body%");
 
         if (isset($request->parent_id))
             $categories->where("parent_id", "=", $request->parent_id);
 
-        $categories =  $categories->orderBy("id", "DESC")->paginate(20);
+        $categories =  $categories->orderBy($order, $desc)->paginate(20);
 
 
         return new CategoryCollection($categories);

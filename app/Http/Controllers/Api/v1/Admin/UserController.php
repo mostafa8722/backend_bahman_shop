@@ -80,6 +80,9 @@ class UserController extends Controller
             "family" => $request->family,
             "email" => $request->email,
             "mobile" => $request->mobile,
+            "national_code" => $request->national_code,
+            "phone" => $request->phone,
+            "type" => $request->type,
             "image" => $src,
             "level" => $level,
             "api_token"=>Str::random(100)
@@ -142,6 +145,9 @@ class UserController extends Controller
             "family" => $request->family,
             "email" => $request->email,
             "mobile" => $request->mobile,
+            "national_code" => $request->national_code,
+            "phone" => $request->phone,
+            "type" => $request->type,
             "image" => $src,
             "level" => $level,
             "api_token"=>Str::random(100)

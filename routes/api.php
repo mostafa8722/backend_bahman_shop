@@ -85,6 +85,53 @@ Route::group(
    Route::get('users/{user}','UserController@single');
    Route::delete('users/{user}','UserController@delete');
 
+   Route::get('smslogs','SmsLogController@index');
+   Route::post('smslogs','SmsLogController@create');
+   Route::put('smslogs/{smsLog}','SmsLogController@update');
+   Route::get('smslogs/{smsLog}','SmsLogController@single');
+   Route::delete('smslogs/{smsLog}','SmsLogController@delete');
+
+   Route::get('pages','PageController@index');
+   Route::post('pages','PageController@create');
+   Route::put('pages/{page}','PageController@update');
+   Route::get('pages/{page}','PageController@single');
+   Route::delete('pages/{pages}','PageController@delete');
+
+   Route::get('useraddresses','UserAddressController@index');
+   Route::post('useraddresses','UserAddressController@create');
+   Route::put('useraddresses/{userAddress}','UserAddressController@update');
+   Route::get('useraddresses/{userAddress}','UserAddressController@single');
+   Route::delete('useraddresses/{userAddress}','UserAddressController@delete');
+
+
+   Route::get('transactions','TransactionController@index');
+   Route::post('transactions','TransactionController@create');
+   Route::put('transactions/{transaction}','TransactionController@update');
+   Route::get('transactions/{transaction}','TransactionController@single');
+   Route::delete('transactions/{transaction}','TransactionController@delete');
+
+
+   Route::get('orders','OrderController@index');
+   Route::post('orders','OrderController@create');
+   Route::put('orders/{order}','OrderController@update');
+   Route::get('orders/{order}','OrderController@single');
+   Route::delete('orders/{order}','OrderController@delete');
+
+   
+   Route::get('comments','CommentController@index');
+   Route::post('comments','CommentController@create');
+   Route::put('comments/{comment}','CommentController@update');
+   Route::get('comments/{comment}','CommentController@single');
+   Route::delete('comments/{comment}','CommentController@delete');
+
+   
+   Route::get('settings','SettingController@index');
+   Route::post('settings','SettingController@create');
+   Route::put('settings/{setting}','SettingController@update');
+   Route::get('settings/{setting}','SettingController@single');
+   Route::delete('settings/{setting}','SettingController@delete');
+
+
     }
 );
 Route::group(['prefix'=>'v1','namespace'=>'App\Http\Controllers\Api\v1'],function () {

@@ -68,9 +68,7 @@ class ProductController extends MotherController
             $ext = "." . strtolower($ext);
             $src = $this->uploadFile($image, "products", time() . $ext);
         }
-        $cat_parent = Product::whereId($request->parent_id)->first();
-        $user_auth =User::whereApi_token(trim($request->bearerToken()))->whereLevel("admin")->first();
-
+      
         $inputs = [
             "title" => $request->title,
             "en_title" => $request->en_title,

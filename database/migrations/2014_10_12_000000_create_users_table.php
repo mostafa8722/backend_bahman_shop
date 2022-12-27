@@ -20,6 +20,10 @@ class CreateUsersTable extends Migration
             $table->string('image');
             $table->string('email')->unique()->nullable();
             $table->string('mobile')->unique();
+            $table->string("national_code")->nullable();
+             $table->string("phone")->nullable();
+             $table->enum("type",array("personal","commercial"))->default("personal");
+            
             $table->string('api_token')->unique();
             $table->enum('level',array("user","customer","cooperator","admin"))->default("user");
             $table->timestamp('email_verified_at')->nullable();

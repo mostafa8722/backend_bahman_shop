@@ -8,9 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Setting extends Model
 {
     protected $fillable = [
-        "index",
-        "value",
-        "type",
+       
         "phone",
         "mobile",
         "address",
@@ -19,5 +17,7 @@ class Setting extends Model
         "linkedin",
         "twitter",
         "description",
+        "about",
+        "contact",
     ];
 }
