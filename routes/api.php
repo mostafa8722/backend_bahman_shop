@@ -18,7 +18,7 @@ example-1| routes are loaded by the RouteServiceProvider within a group which
 Route::group(
     [
         'prefix'=>'v1/admin',
-        'namespace'=>'App\Http\Controllers\Api\v1\admin',
+        'namespace'=>'App\Http\Controllers\Api\v1\Admin',
         'middleware' => ['auth-admin']
     ],
     function(){
@@ -134,10 +134,17 @@ Route::group(
 
     }
 );
-Route::group(['prefix'=>'v1','namespace'=>'App\Http\Controllers\Api\v1'],function () {
+
+
+Route::group([
+    'prefix'=>'v1/home',
+    'namespace'=>'App\Http\Controllers\Api\v1\Home'
+],function () {
   
 
-    Route::post('login','UserController@login');
+   // Route::post('login','UserController@login');
+    Route::get('general/settings','SettingController@single');
+    Route::get('index','IndexController@index');
 
      
  });

@@ -33,6 +33,7 @@ class CreateProductsTable extends Migration
             $table->text('discription')->nullable(); 
             $table->text('price')->nullable(); 
             $table->integer('limited_number')->default(10); 
+            $table->integer('viewed')->default(0); 
             $table->enum('isAvailable',array(false,true));
             $table->json("images")->nullable();
             $table->json("details")->nullable();

@@ -25,7 +25,7 @@ class AdminAuth
         if(!$user)
         return  response([
             "data"=>"You don't authority to access panel admin ",
-            "status" =>$request->bearerToken(),
+      
             "statuzs" =>403
          ],403);
 

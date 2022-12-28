@@ -26,6 +26,8 @@ class Product extends Model
         "discount",
         "colors",
         "sizes",
+        "viewed",
+
     ];
 
     protected $casts = [

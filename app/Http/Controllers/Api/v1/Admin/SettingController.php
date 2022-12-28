@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api\v1\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\v1\Admin\Collection\SettingCollection;
+use App\Http\Resources\v1\Admin\Resource\SettingResource;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 
@@ -22,10 +24,7 @@ class SettingController extends Controller
 
         $settings =  Setting::orderBy($order, $desc)->paginate(20);
 
-        return response([
-            "data" => $settings,
-            "status" => 200
-        ], 200);
+        return new SettingCollection($settings);
 
         
     }
@@ -74,10 +73,8 @@ class SettingController extends Controller
     }
     public function single(Setting $setting)
     {
-        return response([
-            "data" =>$setting,
-            "status" => 200
-        ], 200);
+        
+        return new SettingResource($setting);
       
     }
     public function delete(Setting $setting)
