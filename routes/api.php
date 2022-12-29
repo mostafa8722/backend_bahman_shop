@@ -132,6 +132,14 @@ Route::group(
    Route::delete('settings/{setting}','SettingController@delete');
 
 
+
+   Route::get('posts','PostController@index');
+   Route::post('posts','PostController@create');
+   Route::put('posts/{post}','PostController@update');
+   Route::get('posts/{post}','PostController@single');
+   Route::delete('posts/{post}','PostController@delete');
+
+
     }
 );
 
@@ -145,6 +153,9 @@ Route::group([
    // Route::post('login','UserController@login');
     Route::get('general/settings','SettingController@single');
     Route::get('index','IndexController@index');
+    Route::post('user/login','LoginController@login');
+    Route::post('user/register','LoginController@register');
+    Route::post('user/verify','LoginController@verify');
 
      
  });

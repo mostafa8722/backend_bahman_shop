@@ -17,14 +17,14 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('family');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('email')->unique()->nullable();
             $table->string('mobile')->unique();
             $table->string("national_code")->nullable();
              $table->string("phone")->nullable();
              $table->enum("type",array("personal","commercial"))->default("personal");
             
-            $table->string('api_token')->unique();
+            $table->string('api_token')->unique()->nullable();
             $table->enum('level',array("user","customer","cooperator","admin"))->default("user");
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();

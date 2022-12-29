@@ -15,7 +15,7 @@ class CreateSmsLogsTable extends Migration
     {
         Schema::create('sms_logs', function (Blueprint $table) {
             $table->id();
-            $table->integer("user_id")->unsigned();
+            $table->integer("user_id")->unsigned()->default(0);
             $table->foreign("user_id")->references("users")->onDelete("cascade");
              
             $table->string("mobile");
