@@ -14,6 +14,20 @@ class OrderCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            "data"=>$this->collection->map(function($item){
+                return [
+                    "id"=>$item->id,
+                    "title"=>$item->title,
+                    "body"=>$item->body,
+                    "price"=>$item->price,
+                    "user_id"=>$item->user_id,
+                    "status"=>$item->status,
+                ];
+            })
+        ];
+    }
+    public function with($request){
+        return ["status"=>200];
     }
 }

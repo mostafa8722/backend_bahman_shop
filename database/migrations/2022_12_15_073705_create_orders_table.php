@@ -15,6 +15,15 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->integer("user_id")->unsigned();
+            $table->foreign("user_id")->references("users")->onDelete("cascade");
+         
+            $table->string("title");
+            $table->text("body");
+            $table->string("price");
+         
+            $table->enum('status', array('unpaid', 'paid','ready_to_send','sent'))->default("unpaid");
+        
             $table->timestamps();
         });
     }

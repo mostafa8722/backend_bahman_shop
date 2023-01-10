@@ -7,5 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class SmsLog extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'user_id',
+        'mobile',
+        'code',
+        'is_used',
+        "type"
+    ];
 }
